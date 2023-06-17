@@ -1,0 +1,6 @@
+<div class="wrapper-posts flex justify-center relative">
+    <div class="fill-layer absolute inset-0 z-10"></div>
+    <div id="posts" class="w-4/5 grid grid-cols-3 gap-8 bg-transparent relative z-20">
+        <app-post-card [post]="postItem" *ngFor="let postItem of posts"></app-post-card>
+    </div>
+</div>

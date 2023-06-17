@@ -1,0 +1,15 @@
+.wrapper-posts{
+    min-height: 60vh;
+}
+
+#posts{
+    padding: 2rem;
+    z-index: 2;
+}
+
+.fill-layer{
+    height: 250px;
+    width: 100%;
+    background-color: black;
+    z-index: 1;
+}
