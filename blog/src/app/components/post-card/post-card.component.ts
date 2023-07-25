@@ -8,10 +8,10 @@ import { PostCard } from 'src/app/core/models/PostCard.model';
 })
 export class PostCardComponent {
   @Input() post: PostCard = {id: 0, title:'', categories: []};
-
+  
   constructor() {
 
   }
 
-  
+
 } 

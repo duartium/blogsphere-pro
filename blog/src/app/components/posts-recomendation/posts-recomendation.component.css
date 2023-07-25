@@ -1,0 +1,8 @@
+#wrapper-recomendations{
+    width: 100%;
+    height: 200px;
+}
+
+#wrapper-recomendations #content{
+    width: 80%;
+}

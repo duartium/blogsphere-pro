@@ -1,0 +1,30 @@
+#wrapper-newsletter{
+    width: 100%;
+    height: 480px;
+    padding: 2rem 2rem 8rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+h1,h3,h4,h5{text-align: center;}
+#wrapper-newsletter form, 
+#wrapper-newsletter form > * {
+    width: 100%;
+}
+#wrapper-form{
+    width: 50%;
+}
+#wrapper-form input[type="text"]{
+    margin: 0.3rem;
+}
+.btn-suscription{
+    padding: 0.7rem;
+    font-size: 1rem;
+    width: 200px;
+    transition: 0.5s ease;
+    border: 3px solid transparent;
+    background-color: black;
+    color: #fff;
+}
