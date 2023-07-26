@@ -1,6 +1,13 @@
 :root {
     --primary-color: #3B429F;
-    --light-color: #FFFFFF;
+    --light-color: #edf2f4;
     --secondary-color: #2c3e50;
      --third-color: #F8C630;
   }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}

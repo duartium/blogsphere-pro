@@ -14,6 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { PostsRecomendationComponent } from './components/posts-recomendation/posts-recomendation.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { RouterModule } from '@angular/router';
+import { CodeDisplayComponent } from './components/code-display/code-display.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RouterModule } from '@angular/router';
     PageNotFoundComponent,
     NavbarComponent,
     PostsRecomendationComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    CodeDisplayComponent
   ],
   imports: [
     BrowserModule,

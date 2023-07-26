@@ -1,21 +1,14 @@
 <app-navbar></app-navbar>
 <div id="wrapper-post" class="flex justify-center pb-28">
-    <div id="post-content" class=" flex flex-col justify-center shadow-md p-10 rounded-3xl 
+    <div id="post-content" class="mt-20 flex flex-col justify-center shadow-md px-12 py-24 rounded-3xl 
     text-gray-900 leading-7 text-justify">
-        <h1 class="text-5xl mb-3">Titulo del post</h1>
-        <h5 class="my-5">What is Lorem Ipsum?</h5>
-        <p class="text-lg leading-8">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <h1 class="text-5xl mb-3 text-center">{{post.title}}</h1>
+        <h5 class="my-5" *ngIf="post.description == ''">{{post.description}}</h5>
+        <p class="text-lg leading-8 mt-10">
+            {{post.content}}}
         </p>
-        <pre style="font-family: Andale Mono, Lucida Console, Monaco, fixed, monospace; 
-                color: #fff; background-color: #171717;
-                font-size: 12px;    line-height: 14px; padding: 5px; 
-                overflow: auto; width: 100%; border: 5px solid #343A40" class="bg-black rounded-lg mt-5 shadow-md">
-            <code style="color:#fff;word-wrap:normal;" >
-                <h5 class="my-5">What is Lorem Ipsum?</h5>
-            </code>
-        </pre>
+        
     </div>
 </div>
-<app-posts-recomendation></app-posts-recomendation>
-<app-newsletter></app-newsletter>
+<!-- <app-posts-recomendation></app-posts-recomendation>
+<app-newsletter></app-newsletter> -->
