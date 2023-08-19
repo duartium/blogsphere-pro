@@ -7,7 +7,7 @@ import { PostCard } from 'src/app/core/models/PostCard.model';
   styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent {
-  @Input() post: PostCard = {id: 0, title:'', categories: []};
+  @Input() post: PostCard = {id: 0, codePost: '', title:'', categories: []};
   
   constructor() {
 

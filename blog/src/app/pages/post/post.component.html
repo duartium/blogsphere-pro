@@ -3,10 +3,15 @@
     <div id="post-content" class="mt-20 flex flex-col justify-center shadow-md px-12 py-24 rounded-3xl 
     text-gray-900 leading-7 text-justify">
         <h1 class="text-5xl mb-3 text-center">{{post.title}}</h1>
+        <img *ngIf="post.urlImage != ''" class="w-full h-80 mt-3 rounded-md" [src]="post.urlImage" alt="">
         <h5 class="my-5" *ngIf="post.description == ''">{{post.description}}</h5>
-        <p class="text-lg leading-8 mt-10">
-            {{post.content}}}
-        </p>
+        <div name="post-content" class="text-xl leading-8 mt-10 text-gray-700"
+        [innerHTML]="post.content">
+
+        </div>
+        <app-code-display >
+            
+        </app-code-display>
         
     </div>
 </div>

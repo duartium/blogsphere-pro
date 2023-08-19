@@ -15,6 +15,7 @@ import { PostsRecomendationComponent } from './components/posts-recomendation/po
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { RouterModule } from '@angular/router';
 import { CodeDisplayComponent } from './components/code-display/code-display.component';
+import { LimitTextPipe } from './core/pipes/limit-text.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CodeDisplayComponent } from './components/code-display/code-display.com
     NavbarComponent,
     PostsRecomendationComponent,
     NewsletterComponent,
-    CodeDisplayComponent
+    CodeDisplayComponent,
+    LimitTextPipe
   ],
   imports: [
     BrowserModule,

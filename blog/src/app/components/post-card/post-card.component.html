@@ -1,7 +1,7 @@
 
-<div id="wrapper-postcard" [routerLink]="['post/', post.id]" class="max-w-sm bg-white border border-gray-200 shadow cursor-pointer" >
+<div id="wrapper-postcard" [routerLink]="['post/', post.codePost]" class="max-w-sm bg-white border border-gray-200 shadow cursor-pointer" >
     <img src={{post.urlImage}} alt="" />
     <div class="p-5">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{{post.title}}</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{post.title | limitText}}</h5>
     </div>
 </div>

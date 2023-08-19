@@ -7,7 +7,7 @@ import { PostComponent } from './pages/post/post.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'post/:id', component: PostComponent},
+  { path: 'post/:code-post', component: PostComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
 
