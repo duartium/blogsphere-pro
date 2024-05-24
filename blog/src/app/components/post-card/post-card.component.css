@@ -1,9 +1,0 @@
-#wrapper-postcard{
-    min-height: 318px;
-    max-height: 318px;
-    background-color: white;
-}
-#wrapper-postcard,
-#wrapper-postcard img{
-    border-radius: 40px;
-}
