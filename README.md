@@ -2,8 +2,6 @@
 
 Welcome to BlogSphere Pro - A professional blogging platform built with Angular and FastAPI, styled with Tailwind CSS. BlogSphere Pro comes with an admin panel for efficiently managing and automating your blog posts.
 
-![cover](https://github.com/duartium/blogsphere-pro/blob/main/docs/cover.png?raw=true)
-
 
 ## Features 💫
 
