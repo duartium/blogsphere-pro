@@ -1,0 +1,157 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogComments from '@components/blog/BlogComments'
+import Image from '@components/ui/images/Image.astro'
+import { timeago } from '@support/time'
+import { Settings } from '../../config'
+import { SITE } from '@/config'
+
+export async function getStaticPaths() {
+    const posts = await getCollection('posts')
+    return posts.map(post => ({
+        params: { slug: post.slug },
+        props: post,
+    }))
+}
+
+type Props = CollectionEntry<'posts'>
+
+const post = Astro.props
+const { Content, remarkPluginFrontmatter } = await post.render()
+
+const categories = await getCollection('categories'); 
+const category: CollectionEntry<'categories'> | undefined = categories.filter(
+    c => c.slug === post.data.category 
+).pop(); 
+if (!category) { throw new Error(`La categoría with url ${post.data.category} no fue encontrada`); }
+
+const tags = post.data.tags ?? [category.slug]
+const URL = Astro.url.href
+const ogImage = post.data.ogImage
+---
+
+<BaseLayout
+    title={post.data.title}
+    description={post.data.description}
+    ogImage={ogImage}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        '@id': URL,
+        'url': URL,
+        'description': post.data.description,
+        'image': [
+            // post.data.banner,
+        ],
+        'headline': post.data.title,
+        'datePublished': post.data.pubDate,
+        'dateModified': post.data.pubDate,
+        'author': [{
+            '@type': 'Person',
+            'name': SITE.author,
+            'url': SITE.url,
+        }],
+    }}
+>
+    <section class="mx-auto max-w-6xl px-4 pb-12 pt-8 sm:px-6 lg:px-8 lg:pt-12">
+        <div class="shadow-none sm:shadow-sm mt-4 sm:mt-0">
+            <div class="max-w-6xl">
+                <Image
+                    class="w-full object-cover rounded-tl-sm rounded-tr-sm"
+                    src={post.data.banner}
+                    alt={post.data.title}
+                    draggable="false"
+                    format="avif"
+                    loading="lazy"
+                    inferSize={true}
+                />
+            </div>
+            <div class="sm:dark:bg-neutral-900/30 sm:bg-neutral-100 px-0 sm:px-6 md:px-10 lg:px-14 py-6">
+                <div class="mb-10">
+                    <h2 class="block text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-neutral-300 md:text-4xl lg:text-5xl">
+                        {post.data.title}
+                    </h2>
+                    <ol class="flex items-center whitespace-nowrap mt-2">
+                        <li class="inline-flex items-center">
+                            <a
+                                class="flex items-center text-sm text-orange-400 hover:text-orange-500 focus:outline-none focus:text-orange-500"
+                                href=`/categories/${category.slug}`
+                            >
+                                {category?.data?.title}
+                            </a>
+                            <svg
+                                class="flex-shrink-0 size-5 text-neutral-500 dark:text-neutral-600 mx-2"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                            </svg>
+                        </li>
+                        <li class="inline-flex items-center text-sm text-neutral-500 hover:text-neutral-600 focus:outline-none focus:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400">
+                            {timeago(post.data.pubDate)}
+                            <svg
+                                class="flex-shrink-0 size-5 text-neutral-500 dark:text-neutral-600 mx-2"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                            </svg>
+                        </li>
+                        <li
+                            class="inline-flex items-center text-sm text-neutral-500 hover:text-neutral-600 focus:outline-none focus:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+                            aria-current="page"
+                        >
+                            {remarkPluginFrontmatter.minutesRead}
+                        </li>
+                    </ol>
+                </div>
+
+                <article class="prose prose-blog sm:prose-lg dark:prose-invert max-w-none">
+                    <Content />
+                </article>
+
+                <div class="mt-10 md:mt-14 mx-auto grid max-w-screen-lg gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 sm:flex-nowrap sm:items-center sm:gap-y-0">
+                        {
+                            tags.map((tag: string) => (
+                                <span class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 outline-none focus:outline-none focus-visible:outline-none focus-visible:ring dark:bg-neutral-700/60 dark:text-neutral-300">
+                                    {tag}
+                                </span>
+                            ))
+                        }
+                    </div>
+                    <!--<div class="flex items-center justify-end gap-x-1.5">-->
+                    <!--    <Bookmark />-->
+                    <!--    <div class="mx-3 block h-4 border-e border-neutral-400 dark:border-neutral-500"></div>-->
+                    <!--    <div class="inline-flex">-->
+                    <!--        <SocialShare pageTitle={post.data.title} />-->
+                    <!--    </div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        {
+            Settings.Comment.enable && (
+                <div class="my-10">
+                    <BlogComments client:only="react" />
+                </div>
+            )
+        }
+    </section>
+    <style is:inline>
+        html.dark .astro-code,
+        html.dark .astro-code span {
+            color: var(--shiki-dark) !important;
+            background-color: var(--shiki-dark-bg) !important;
+        }
+</style>
+</BaseLayout>

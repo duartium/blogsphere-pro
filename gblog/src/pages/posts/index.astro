@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogRecentCard from '@components/blog/BlogRecentCard.astro'
+import BlogSelectedArticle from '@components/blog/BlogSelectedArticle.astro'
+import { SITE } from '@/config'
+
+const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+)
+
+const selectedPosts: CollectionEntry<'posts'>[] = posts.filter(p => p.data.selected)
+const description = 'Aquí tienes algunos artículos que te pueden interesar.'
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="Todos los artículos"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-US',
+        '@id': URL,
+        'url': URL,
+        'name': `Todos los artículos - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <BlogRecentCard blogs={posts} />
+    <BlogSelectedArticle posts={selectedPosts} />
+</BaseLayout>
+

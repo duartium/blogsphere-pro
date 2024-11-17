@@ -1,0 +1,67 @@
+{
+  "name": "godruoyi.com",
+  "type": "module",
+  "version": "1.0.0",
+  "homepage": "https://godruoyi.com",
+  "bugs": {
+    "url": "https://github.com/godruoyi/gblog/issues",
+    "email": "syhily@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/godruoyi/gblog.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Godruoyi",
+    "email": "godruoyi@gmail.com",
+    "url": "https://godruoyi.com"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.3",
+    "@astrojs/partytown": "^2.1.1",
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/tailwind": "^5.1.0",
+    "@giscus/react": "^3.0.0",
+    "@playform/compress": "^0.0.4",
+    "@types/react": "^18.3.2",
+    "@types/unist": "^3.0.2",
+    "astro": "^4.14.2",
+    "astro-compressor": "^0.4.1",
+    "mdast-util-to-string": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reading-time": "^1.5.0",
+    "sharp": "^0.33.3",
+    "sharp-ico": "^0.1.5",
+    "tailwindcss": "^3.4.3",
+    "ultrahtml": "^1.5.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.18.0",
+    "@eslint-react/eslint-plugin": "^1.5.16",
+    "@tailwindcss/typography": "^0.5.13",
+    "astro-uploader": "^1.0.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^1.2.0",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "mysql2": "^3.9.7",
+    "preline": "^2.1.0",
+    "timeago.js": "^4.0.2",
+    "unist-util-visit": "^5.0.0"
+  }
+}

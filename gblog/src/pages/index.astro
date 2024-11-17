@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogInsight from '@components/blog/BlogInsight.astro'
+import HeroSection from '@components/ui/sections/HeroSection.astro'
+import FeaturesSection from '@components/ui/sections/FeaturesSection.astro'
+import HeroSectionAlt from '@components/ui/sections/HeroSectionAlt.astro'
+import blogHeroImg from '@images/home.png'
+
+const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).slice(0, 3);
+---
+
+<BaseLayout title='' description=''>
+    <HeroSection
+        title=`Hola,<span class="text-yellow-500 dark:text-yellow-400"> Soy Byron</span>`
+        subTitle="Bienvenido a mi Blog, escribo artículos y guías sobre proyectos web, móviles, escritorio, scripting, análisis de datos e inteligencia artificial. Cada publicación está diseñada para ofrecerte insights valiosos que pueden transformar tu comprensión y aplicación de estas tecnologías."
+        primaryBtn="Explora mis Artículos"
+        primaryBtnURL="/posts"
+        src={blogHeroImg}
+        alt="Blog de Byron Duarte"
+    />
+
+    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+        <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+            <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+                Últimos Artículos
+            </h2>
+            <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+                Mantente al día, comenta tus opiniones y comparte en tus redes sociales.
+            </p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                posts.map(b => (
+                    <BlogInsight blog={b} />
+                ))
+            }
+        </div>
+    </section>
+
+    <HeroSectionAlt
+        title="Sígueme en GitHub"
+        subTitle="El código abierto no solo trata sobre tecnología. Es libertad, comunidad y el espíritu insubordinado de la curiosidad humana."
+        url="https://github.com/duartium"
+    />
+</BaseLayout>

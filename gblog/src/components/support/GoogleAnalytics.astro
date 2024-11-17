@@ -1,0 +1,20 @@
+---
+import { Settings } from '@/config'
+
+const ID = Settings?.GoogleAnalytics?.id
+const enable = Settings?.GoogleAnalytics?.enable
+---
+
+{
+    enable && (
+        <script is:inline type="text/partytown" src=`https://www.googletagmanager.com/gtag/js?id=${ID}`></script>
+        <script is:inline define:vars={{ ID }}>
+            window.dataLayer = window.dataLayer || []
+            // eslint-disable-next-line style/max-statements-per-line,prefer-rest-params
+            window.gtag = function gtag() { dataLayer.push(arguments) }
+            window.gtag('js', new Date())
+            window.gtag('config', ID)
+        </script>
+    )
+}
+
