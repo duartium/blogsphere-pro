@@ -1,13 +1,11 @@
 # BlogSphere Pro 💬
 
-Welcome to BlogSphere Pro - A professional blogging platform built with Angular and FastAPI, styled with Tailwind CSS. BlogSphere Pro comes with an admin panel for efficiently managing and automating your blog posts.
-
+Welcome to BlogSphere Pro - A professional blogging platform built with Astro, styled with Tailwind CSS. BlogSphere Pro comes with an admin panel (CMS) for efficiently managing and automating your blog posts.
 
 ## Features 💫
 
-
-3. **Responsive Design**: Utilizes Tailwind CSS for a sleek and adaptable design.
-4. **Professional Platform**: Ideal for sharing professional content and connecting with your audience.
+1. **Responsive Design**: Utilizes Tailwind CSS for a sleek and adaptable design.
+2. **Professional Platform**: Ideal for sharing professional content and connecting with your audience.
 
 ![cover astro blog](docs/astro-home.png)
 
