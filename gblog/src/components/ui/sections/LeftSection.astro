@@ -1,0 +1,42 @@
+---
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro'
+import Image from '@components/ui/images/Image.astro'
+
+const { title, subTitle, btnExists, btnTitle, btnURL, img, imgAlt } = Astro.props
+
+interface Props {
+    title: string
+    subTitle: string
+    btnExists?: boolean
+    btnTitle?: string
+    btnURL?: string
+    img: any
+    imgAlt: any
+}
+---
+
+<section
+    class="mx-auto max-w-[85rem] items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:px-8 lg:py-14 xl:gap-16 2xl:max-w-full"
+>
+    <Image
+        class="w-full rounded-xl h-full sm:max-h-[320px] md:max-h-[360px] object-cover"
+        src={img}
+        alt={imgAlt}
+        draggable="false"
+        loading="lazy"
+        width="850"
+        height="420"
+    />
+
+    <div class="mt-4 md:mt-0">
+        <h2 class="mb-4 text-balance text-4xl font-extrabold tracking-tight text-neutral-800 dark:text-neutral-200">
+            {title}
+        </h2>
+        <p class="mb-4 max-w-prose text-pretty font-light text-neutral-600 dark:text-neutral-400 sm:text-lg">
+            {subTitle}
+        </p>
+        {
+            btnExists ? <PrimaryCTA title={btnTitle} url={btnURL} /> : null
+        }
+    </div>
+</section>

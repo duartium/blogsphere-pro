@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogTimeline from '@components/blog/BlogTimeline.astro'
+import { SITE } from '@/config'
+
+const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+)
+const description = `Godruoyi All Posts, Currently written ${posts.length} articles. Let's keep up the good work!`
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="Timeline"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-US',
+        '@id': URL,
+        'url': URL,
+        'name': `Timeline - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <section class="mx-auto max-w-[85rem] mt-10 lg:mt-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div class="max-w-3xl mx-auto mb-10 lg:mb-14">
+            <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">Timeline</h2>
+            <p class="mt-4 text-lg group text-pretty text-neutral-600 dark:text-neutral-400">
+                目前一共写了 <span class="group-hover:text-yellow-500 group-hover:dark:text-yellow-400">{posts.length}</span> 篇文章，再接再厉吧 💪
+            </p>
+        </div>
+        {posts.map(p => <BlogTimeline blog={p} />)}
+    </section>
+</BaseLayout>
