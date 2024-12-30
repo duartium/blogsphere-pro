@@ -50,7 +50,7 @@ const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
         btnURL="/categories"
     />
 
-    <section class="mx-auto mt-8 max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">
+    <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">
         <div class="grid gap-6 grid-cols-1 lg:grid-cols-3 sm:grid-cols-2">
             {posts.map(b => <BlogCard blog={b} />)}
         </div>
